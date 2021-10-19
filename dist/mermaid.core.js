@@ -11559,12 +11559,15 @@ var loop = function loop(parent, node) {
   var h = bbox.height + node.padding;
   var points = [{
     x: -2 * h / 6,
+    y: -h * 3 / 4
+  }, {
+    x: -2 * h / 6,
     y: 0
   }, {
     x: w + 2 * h / 6,
     y: 0
   }, {
-    x: w - h / 6,
+    x: w + 2 * h / 6,
     y: -h * 3 / 4
   }, {
     x: w - h / 6,
@@ -11572,9 +11575,6 @@ var loop = function loop(parent, node) {
   }, {
     x: h / 6,
     y: -h
-  }, {
-    x: h / 6,
-    y: -h * 3 / 4
   }];
   var el = (0,_shapes_util__WEBPACK_IMPORTED_MODULE_1__.insertPolygonShape)(shapeSvg, w, h, points);
   el.attr('style', node.style);
@@ -11596,19 +11596,22 @@ var inv_loop = function inv_loop(parent, node) {
   var h = bbox.height + node.padding;
   var points = [{
     x: h / 6,
-    y: -h * 3 / 4
-  }, {
-    x: h / 6,
     y: 0
   }, {
     x: w - h / 6,
     y: 0
   }, {
     x: w + 2 * h / 6,
+    y: -h * 3 / 4
+  }, {
+    x: w + 2 * h / 6,
     y: -h
   }, {
     x: -2 * h / 6,
     y: -h
+  }, {
+    x: -2 * h / 6,
+    y: -h * 3 / 4
   }];
   var el = (0,_shapes_util__WEBPACK_IMPORTED_MODULE_1__.insertPolygonShape)(shapeSvg, w, h, points);
   el.attr('style', node.style);
@@ -15799,12 +15802,15 @@ function loop(parent, bbox, node) {
   var h = bbox.height;
   var points = [{
     x: -2 * h / 6,
+    y: -h * 3 / 4
+  }, {
+    x: -2 * h / 6,
     y: 0
   }, {
     x: w + 2 * h / 6,
     y: 0
   }, {
-    x: w - h / 6,
+    x: w + 2 * h / 6,
     y: -h * 3 / 4
   }, {
     x: w - h / 6,
@@ -15812,9 +15818,6 @@ function loop(parent, bbox, node) {
   }, {
     x: h / 6,
     y: -h
-  }, {
-    x: h / 6,
-    y: -h * 3 / 4
   }];
   var shapeSvg = insertPolygonShape(parent, w, h * 5 / 4, points);
 
@@ -15830,19 +15833,22 @@ function inv_loop(parent, bbox, node) {
   var h = bbox.height;
   var points = [{
     x: h / 6,
-    y: -h * 3 / 4
-  }, {
-    x: h / 6,
     y: 0
   }, {
     x: w - h / 6,
     y: 0
   }, {
     x: w + 2 * h / 6,
+    y: -h * 3 / 4
+  }, {
+    x: w + 2 * h / 6,
     y: -h
   }, {
     x: -2 * h / 6,
     y: -h
+  }, {
+    x: -2 * h / 6,
+    y: -h * 3 / 4
   }];
   var shapeSvg = insertPolygonShape(parent, w, h * 5 / 4, points);
 

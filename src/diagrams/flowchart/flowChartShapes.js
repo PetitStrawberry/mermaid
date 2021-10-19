@@ -259,12 +259,12 @@ function loop(parent, bbox, node) {
   const w = bbox.width;
   const h = bbox.height;
   const points = [
+    { x: (-2 * h) / 6, y: -h*3/4 },
     { x: (-2 * h) / 6, y: 0 },
     { x: w + (2 * h) / 6, y: 0 },
-    { x: w - h / 6, y: -h*3/4 },
+    { x: w + (2 * h) / 6, y: -h*3/4 },
     { x: w - h / 6, y: -h },
-    { x: h / 6, y: -h },
-    { x: h / 6, y: -h*3/4 }
+    { x: h / 6, y: -h }
   ];
   const shapeSvg = insertPolygonShape(parent, w, h*5/4, points);
   node.intersect = function (point) {
@@ -276,11 +276,12 @@ function inv_loop(parent, bbox, node) {
   const w = bbox.width;
   const h = bbox.height;
   const points = [
-    { x: h / 6, y: -h*3/4 },
     { x: h / 6, y: 0 },
     { x: w - h / 6, y: 0 },
+    { x: w + (2 * h) / 6, y: -h*3/4 },
     { x: w + (2 * h) / 6, y: -h },
     { x: (-2 * h) / 6, y: -h },
+    { x: (-2 * h) / 6, y: -h*3/4 }
   ];
   const shapeSvg = insertPolygonShape(parent, w, h*5/4, points);
   node.intersect = function (point) {
