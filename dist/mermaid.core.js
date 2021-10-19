@@ -15493,16 +15493,16 @@ function trapezoid(parent, bbox, node) {
   var w = bbox.width;
   var h = bbox.height;
   var points = [{
-    x: 0,
-    y: h / 3
-  }, {
-    x: w,
+    x: -2 * h / 6,
     y: 0
   }, {
-    x: w,
+    x: w + 2 * h / 6,
+    y: 0
+  }, {
+    x: w - h / 6,
     y: -h
   }, {
-    x: 0,
+    x: h / 6,
     y: -h
   }];
   var shapeSvg = insertPolygonShape(parent, w, h, points);
@@ -17359,6 +17359,10 @@ var addVertices = function addVertices(vert, g, svgId) {
 
       case 'cylinder':
         _shape = 'cylinder';
+        break;
+
+      case 'manual_input':
+        _shape = 'manual_input';
         break;
 
       case 'group':

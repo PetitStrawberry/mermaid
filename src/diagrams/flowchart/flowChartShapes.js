@@ -90,10 +90,10 @@ function trapezoid(parent, bbox, node) {
   const w = bbox.width;
   const h = bbox.height;
   const points = [
-    { x: 0, y: h / 3 },
-    { x: w, y: 0 },
-    { x: w, y: -h },
-    { x: 0, y: -h },
+    { x: (-2 * h) / 6, y: 0 },
+    { x: w + (2 * h) / 6, y: 0 },
+    { x: w - h / 6, y: -h },
+    { x: h / 6, y: -h },
   ];
   const shapeSvg = insertPolygonShape(parent, w, h, points);
   node.intersect = function (point) {
