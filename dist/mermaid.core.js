@@ -11520,10 +11520,10 @@ var manual_input = function manual_input(parent, node) {
     y: 0
   }, {
     x: w,
-    y: -h
+    y: -h * 5 / 4
   }, {
     x: 0,
-    y: -h * 2 / 3
+    y: -h
   }];
   var el = (0,_shapes_util__WEBPACK_IMPORTED_MODULE_1__.insertPolygonShape)(shapeSvg, w, h, points);
   el.attr('style', node.style);
@@ -15693,10 +15693,10 @@ function manual_input(parent, bbox, node) {
     y: 0
   }, {
     x: w,
-    y: -h
+    y: -h * 5 / 4
   }, {
     x: 0,
-    y: -h * 2 / 3
+    y: -h
   }];
   var shapeSvg = insertPolygonShape(parent, w, h, points);
 
