@@ -255,6 +255,40 @@ function manual_input(parent, bbox, node) {
   return shapeSvg;
 }
 
+function loop(parent, bbox, node) {
+  const w = bbox.width;
+  const h = bbox.height;
+  const points = [
+    { x: (-2 * h) / 6, y: 0 },
+    { x: w + (2 * h) / 6, y: 0 },
+    { x: w - h / 6, y: -h*3/4 },
+    { x: w - h / 6, y: -h },
+    { x: h / 6, y: -h },
+    { x: h / 6, y: -h*3/4 }
+  ];
+  const shapeSvg = insertPolygonShape(parent, w, h*5/4, points);
+  node.intersect = function (point) {
+    return dagreD3.intersect.polygon(node, points, point);
+  };
+  return shapeSvg;
+}
+function inv_loop(parent, bbox, node) {
+  const w = bbox.width;
+  const h = bbox.height;
+  const points = [
+    { x: h / 6, y: -h*3/4 },
+    { x: h / 6, y: 0 },
+    { x: w - h / 6, y: 0 },
+    { x: w + (2 * h) / 6, y: -h },
+    { x: (-2 * h) / 6, y: -h },
+  ];
+  const shapeSvg = insertPolygonShape(parent, w, h*5/4, points);
+  node.intersect = function (point) {
+    return dagreD3.intersect.polygon(node, points, point);
+  };
+  return shapeSvg;
+}
+
 export function addToRender(render) {
   render.shapes().question = question;
   render.shapes().hexagon = hexagon;
@@ -281,6 +315,10 @@ export function addToRender(render) {
   render.shapes().rect_right_inv_arrow = rect_right_inv_arrow;
 
   render.shapes().manual_input = manual_input;
+
+  render.shapes().loop = loop;
+
+  render.shapes().inv_loop = inv_loop;
 }
 
 export function addToRenderV2(addShape) {
@@ -309,6 +347,10 @@ export function addToRenderV2(addShape) {
   addShape({ rect_right_inv_arrow });
 
   addShape({ manual_input });
+
+  addShape({ loop });
+
+  addShape({ inv_loop });
 }
 
 function insertPolygonShape(parent, w, h, points) {

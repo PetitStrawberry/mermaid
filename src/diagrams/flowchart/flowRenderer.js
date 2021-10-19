@@ -128,6 +128,12 @@ export const addVertices = function (vert, g, svgId) {
         break;
       case 'manual_input':
           _shape = 'manual_input';
+        break;
+      case 'loop':
+          _shape = 'loop';
+        break;
+      case 'inv_loop':
+          _shape = 'inv_loop';
           break;
       case 'group':
         _shape = 'rect';

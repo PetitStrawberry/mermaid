@@ -548,6 +548,55 @@ const manual_input = (parent, node) => {
   return shapeSvg;
 };
 
+const loop = (parent, node) => {
+  const { shapeSvg, bbox } = labelHelper(parent, node, undefined, true);
+
+  const w = bbox.width + node.padding;
+  const h = bbox.height + node.padding;
+  const points = [
+    { x: (-2 * h) / 6, y: 0 },
+    { x: w + (2 * h) / 6, y: 0 },
+    { x: w - h / 6, y: -h*3/4 },
+    { x: w - h / 6, y: -h },
+    { x: h / 6, y: -h },
+    { x: h / 6, y: -h*3/4 }
+  ];
+
+  const el = insertPolygonShape(shapeSvg, w, h, points);
+  el.attr('style', node.style);
+  updateNodeBounds(node, el);
+
+  node.intersect = function (point) {
+    return intersect.polygon(node, points, point);
+  };
+
+  return shapeSvg;
+};
+
+const inv_loop = (parent, node) => {
+  const { shapeSvg, bbox } = labelHelper(parent, node, undefined, true);
+
+  const w = bbox.width + node.padding;
+  const h = bbox.height + node.padding;
+  const points = [
+    { x: h / 6, y: -h*3/4 },
+    { x: h / 6, y: 0 },
+    { x: w - h / 6, y: 0 },
+    { x: w + (2 * h) / 6, y: -h },
+    { x: (-2 * h) / 6, y: -h },
+  ];
+
+  const el = insertPolygonShape(shapeSvg, w, h, points);
+  el.attr('style', node.style);
+  updateNodeBounds(node, el);
+
+  node.intersect = function (point) {
+    return intersect.polygon(node, points, point);
+  };
+
+  return shapeSvg;
+};
+
 const start = (parent, node) => {
   const shapeSvg = parent
     .insert('g')
@@ -922,6 +971,8 @@ const shapes = {
   note,
   subroutine,
   manual_input,
+  loop,
+  inv_loop,
   fork: forkJoin,
   join: forkJoin,
   class_box,
