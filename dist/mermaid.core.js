@@ -11558,16 +11558,16 @@ var loop = function loop(parent, node) {
   var w = bbox.width + node.padding;
   var h = bbox.height + node.padding;
   var points = [{
-    x: -2 * h / 4,
+    x: -2 * h / 8,
     y: -h * 3 / 4
   }, {
-    x: -2 * h / 4,
+    x: -2 * h / 8,
     y: 0
   }, {
-    x: w + 2 * h / 4,
+    x: w + 2 * h / 8,
     y: 0
   }, {
-    x: w + 2 * h / 4,
+    x: w + 2 * h / 8,
     y: -h * 3 / 4
   }, {
     x: w - h / 6,
@@ -11601,16 +11601,16 @@ var inv_loop = function inv_loop(parent, node) {
     x: w - h / 6,
     y: 0
   }, {
-    x: w + 2 * h / 4,
+    x: w + 2 * h / 8,
     y: -h / 4
   }, {
-    x: w + 2 * h / 4,
+    x: w + 2 * h / 8,
     y: -h
   }, {
-    x: -2 * h / 4,
+    x: -2 * h / 8,
     y: -h
   }, {
-    x: -2 * h / 4,
+    x: -2 * h / 8,
     y: -h / 4
   }];
   var el = (0,_shapes_util__WEBPACK_IMPORTED_MODULE_1__.insertPolygonShape)(shapeSvg, w, h, points);
@@ -15819,7 +15819,7 @@ function loop(parent, bbox, node) {
     x: h / 6,
     y: -h
   }];
-  var shapeSvg = insertPolygonShape(parent, w, h * 5 / 4, points);
+  var shapeSvg = insertPolygonShape(parent, w, h, points);
 
   node.intersect = function (point) {
     return dagre_d3__WEBPACK_IMPORTED_MODULE_0___default().intersect.polygon(node, points, point);
@@ -15838,19 +15838,19 @@ function inv_loop(parent, bbox, node) {
     x: w - h / 6,
     y: 0
   }, {
-    x: w + 2 * h / 4,
+    x: w + 2 * h / 8,
     y: -h / 4
   }, {
-    x: w + 2 * h / 4,
+    x: w + 2 * h / 8,
     y: -h
   }, {
-    x: -2 * h / 4,
+    x: -2 * h / 8,
     y: -h
   }, {
-    x: -2 * h / 4,
+    x: -2 * h / 8,
     y: -h / 4
   }];
-  var shapeSvg = insertPolygonShape(parent, w, h * 5 / 4, points);
+  var shapeSvg = insertPolygonShape(parent, w, h, points);
 
   node.intersect = function (point) {
     return dagre_d3__WEBPACK_IMPORTED_MODULE_0___default().intersect.polygon(node, points, point);
