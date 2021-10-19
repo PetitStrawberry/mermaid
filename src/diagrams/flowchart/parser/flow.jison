@@ -398,7 +398,7 @@ vertex:  idString SQS text SQE
         {$$ = $1;yy.addVertex($1,$3,'lean_right');}
     | idString INVTRAPSTART text TRAPEND
         {$$ = $1;yy.addVertex($1,$3,'lean_left');}
-    | idString SQS UP text SQE
+    | idString TRAPSTART text SUBROUTINEEND
         {$$ = $1;yy.addVertex($1,$3,'manual_input');}
     | idString
         { /*console.warn('h: ', $1);*/$$ = $1;yy.addVertex($1);}
