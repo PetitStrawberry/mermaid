@@ -525,6 +525,29 @@ const subroutine = (parent, node) => {
   return shapeSvg;
 };
 
+const manual_input = (parent, node) => {
+  const { shapeSvg, bbox } = labelHelper(parent, node, undefined, true);
+
+  const w = bbox.width + node.padding;
+  const h = bbox.height + node.padding;
+  const points = [
+    { x: 0, y: 0 },
+    { x: w, y: 0 },
+    { x: w, y: -h },
+    { x: 0, y: -h*2/3 },
+  ];
+
+  const el = insertPolygonShape(shapeSvg, w, h, points);
+  el.attr('style', node.style);
+  updateNodeBounds(node, el);
+
+  node.intersect = function (point) {
+    return intersect.polygon(node, points, point);
+  };
+
+  return shapeSvg;
+};
+
 const start = (parent, node) => {
   const shapeSvg = parent
     .insert('g')
@@ -898,6 +921,7 @@ const shapes = {
   end,
   note,
   subroutine,
+  manual_input,
   fork: forkJoin,
   join: forkJoin,
   class_box,

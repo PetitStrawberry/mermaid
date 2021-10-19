@@ -11505,6 +11505,37 @@ var subroutine = function subroutine(parent, node) {
   return shapeSvg;
 };
 
+var manual_input = function manual_input(parent, node) {
+  var _labelHelper14 = (0,_shapes_util__WEBPACK_IMPORTED_MODULE_1__.labelHelper)(parent, node, undefined, true),
+      shapeSvg = _labelHelper14.shapeSvg,
+      bbox = _labelHelper14.bbox;
+
+  var w = bbox.width + node.padding;
+  var h = bbox.height + node.padding;
+  var points = [{
+    x: 0,
+    y: 0
+  }, {
+    x: w,
+    y: 0
+  }, {
+    x: w,
+    y: -h
+  }, {
+    x: 0,
+    y: -h * 2 / 3
+  }];
+  var el = (0,_shapes_util__WEBPACK_IMPORTED_MODULE_1__.insertPolygonShape)(shapeSvg, w, h, points);
+  el.attr('style', node.style);
+  (0,_shapes_util__WEBPACK_IMPORTED_MODULE_1__.updateNodeBounds)(node, el);
+
+  node.intersect = function (point) {
+    return _intersect_index_js__WEBPACK_IMPORTED_MODULE_3__["default"].polygon(node, points, point);
+  };
+
+  return shapeSvg;
+};
+
 var start = function start(parent, node) {
   var shapeSvg = parent.insert('g').attr('class', 'node default').attr('id', node.domId || node.id);
   var circle = shapeSvg.insert('circle', ':first-child'); // center the circle around its coordinate
@@ -11805,6 +11836,7 @@ var shapes = {
   end: end,
   note: _shapes_note__WEBPACK_IMPORTED_MODULE_8__["default"],
   subroutine: subroutine,
+  manual_input: manual_input,
   fork: forkJoin,
   join: forkJoin,
   class_box: class_box
@@ -15655,7 +15687,7 @@ function manual_input(parent, bbox, node) {
   var h = bbox.height;
   var points = [{
     x: 0,
-    y: h / 3
+    y: 0
   }, {
     x: w,
     y: 0
@@ -15664,7 +15696,7 @@ function manual_input(parent, bbox, node) {
     y: -h
   }, {
     x: 0,
-    y: -h
+    y: -h * 2 / 3
   }];
   var shapeSvg = insertPolygonShape(parent, w, h, points);
 
