@@ -15654,16 +15654,16 @@ function manual_input(parent, bbox, node) {
   var w = bbox.width;
   var h = bbox.height;
   var points = [{
-    x: -2 * h / 6,
+    x: 0,
+    y: h / 3
+  }, {
+    x: w,
     y: 0
   }, {
-    x: w + 2 * h / 6,
-    y: 0
-  }, {
-    x: w - h / 6,
+    x: w,
     y: -h
   }, {
-    x: h / 6,
+    x: 0,
     y: -h
   }];
   var shapeSvg = insertPolygonShape(parent, w, h, points);
@@ -16812,6 +16812,10 @@ var addVertices = function addVertices(vert, g, svgId) {
 
       case 'cylinder':
         _shape = 'cylinder';
+        break;
+
+      case 'manual_input':
+        _shape = 'manual_input';
         break;
 
       case 'group':

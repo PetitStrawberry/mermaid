@@ -126,7 +126,7 @@ export const addVertices = function (vert, g, svgId) {
       case 'cylinder':
         _shape = 'cylinder';
         break;
-        case 'manual_input':
+      case 'manual_input':
           _shape = 'manual_input';
           break;
       case 'group':
