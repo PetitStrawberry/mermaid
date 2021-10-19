@@ -239,6 +239,22 @@ function cylinder(parent, bbox, node) {
   return shapeSvg;
 }
 
+function manual_input(parent, bbox, node) {
+  const w = bbox.width;
+  const h = bbox.height;
+  const points = [
+    { x: 0, y: 0 },
+    { x: w, y: 0 },
+    { x: w, y: -h*5/4 },
+    { x: 0, y: -h },
+  ];
+  const shapeSvg = insertPolygonShape(parent, w, h*5/4, points);
+  node.intersect = function (point) {
+    return dagreD3.intersect.polygon(node, points, point);
+  };
+  return shapeSvg;
+}
+
 export function addToRender(render) {
   render.shapes().question = question;
   render.shapes().hexagon = hexagon;
@@ -263,6 +279,8 @@ export function addToRender(render) {
 
   // Add custom shape for box with inverted arrow on right side
   render.shapes().rect_right_inv_arrow = rect_right_inv_arrow;
+
+  render.shapes().manual_input = manual_input;
 }
 
 export function addToRenderV2(addShape) {
@@ -289,6 +307,8 @@ export function addToRenderV2(addShape) {
 
   // Add custom shape for box with inverted arrow on right side
   addShape({ rect_right_inv_arrow });
+
+  addShape({ manual_input });
 }
 
 function insertPolygonShape(parent, w, h, points) {
