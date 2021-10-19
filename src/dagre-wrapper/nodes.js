@@ -554,10 +554,10 @@ const loop = (parent, node) => {
   const w = bbox.width + node.padding;
   const h = bbox.height + node.padding;
   const points = [
-    { x: (-2 * h) / 6, y: -h*3/4 },
-    { x: (-2 * h) / 6, y: 0 },
-    { x: w + (2 * h) / 6, y: 0 },
-    { x: w + (2 * h) / 6, y: -h*3/4 },
+    { x: (-2 * h) / 4, y: -h*3/4 },
+    { x: (-2 * h) / 4, y: 0 },
+    { x: w + (2 * h) / 4, y: 0 },
+    { x: w + (2 * h) / 4, y: -h*3/4 },
     { x: w - h / 6, y: -h },
     { x: h / 6, y: -h }
   ];
@@ -581,10 +581,10 @@ const inv_loop = (parent, node) => {
   const points = [
     { x: h / 6, y: 0 },
     { x: w - h / 6, y: 0 },
-    { x: w + (2 * h) / 6, y: -h*3/4 },
-    { x: w + (2 * h) / 6, y: -h },
-    { x: (-2 * h) / 6, y: -h },
-    { x: (-2 * h) / 6, y: -h*3/4 }
+    { x: w + (2 * h) / 4, y: -h/4 },
+    { x: w + (2 * h) / 4, y: -h },
+    { x: (-2 * h) / 4, y: -h },
+    { x: (-2 * h) / 4, y: -h/4 }
   ];
 
   const el = insertPolygonShape(shapeSvg, w, h, points);
