@@ -11525,7 +11525,7 @@ var manual_input = function manual_input(parent, node) {
     x: 0,
     y: -h
   }];
-  var el = (0,_shapes_util__WEBPACK_IMPORTED_MODULE_1__.insertPolygonShape)(shapeSvg, w, h, points);
+  var el = (0,_shapes_util__WEBPACK_IMPORTED_MODULE_1__.insertPolygonShape)(shapeSvg, w, h * 5 / 4, points);
   el.attr('style', node.style);
   (0,_shapes_util__WEBPACK_IMPORTED_MODULE_1__.updateNodeBounds)(node, el);
 
@@ -15698,7 +15698,7 @@ function manual_input(parent, bbox, node) {
     x: 0,
     y: -h
   }];
-  var shapeSvg = insertPolygonShape(parent, w, h, points);
+  var shapeSvg = insertPolygonShape(parent, w, h * 5 / 4, points);
 
   node.intersect = function (point) {
     return dagre_d3__WEBPACK_IMPORTED_MODULE_0___default().intersect.polygon(node, points, point);

@@ -248,7 +248,7 @@ function manual_input(parent, bbox, node) {
     { x: w, y: -h*5/4 },
     { x: 0, y: -h },
   ];
-  const shapeSvg = insertPolygonShape(parent, w, h, points);
+  const shapeSvg = insertPolygonShape(parent, w, h*5/4, points);
   node.intersect = function (point) {
     return dagreD3.intersect.polygon(node, points, point);
   };

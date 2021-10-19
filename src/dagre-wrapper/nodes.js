@@ -537,7 +537,7 @@ const manual_input = (parent, node) => {
     { x: 0, y: -h },
   ];
 
-  const el = insertPolygonShape(shapeSvg, w, h, points);
+  const el = insertPolygonShape(shapeSvg, w, h*5/4, points);
   el.attr('style', node.style);
   updateNodeBounds(node, el);
 
