@@ -346,7 +346,7 @@ export function addToRender(render) {
 
   render.shapes().inv_loop = inv_loop;
 
-  render.shape().display = display;
+  render.shapes().display = display;
 }
 
 export function addToRenderV2(addShape) {

@@ -15916,7 +15916,7 @@ function addToRender(render) {
   render.shapes().manual_input = manual_input;
   render.shapes().loop = loop;
   render.shapes().inv_loop = inv_loop;
-  render.shape().display = display;
+  render.shapes().display = display;
 }
 function addToRenderV2(addShape) {
   addShape({
