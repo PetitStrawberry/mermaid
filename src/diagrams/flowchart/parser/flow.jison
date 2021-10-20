@@ -408,6 +408,8 @@ vertex:  idString SQS text SQE
         {$$ = $1;yy.addVertex($1,$3,'loop');}
     | idString INVLOOPSTART text INVLOOPEND
         {$$ = $1;yy.addVertex($1,$3,'inv_loop');}
+    | idString TAGSTART text PE
+        {$$ = $1;yy.addVertex($1,$3,'display');}
     | idString
         { /*console.warn('h: ', $1);*/$$ = $1;yy.addVertex($1);}
     ;

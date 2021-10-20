@@ -598,6 +598,38 @@ const inv_loop = (parent, node) => {
   return shapeSvg;
 };
 
+const display = (parent, node) => {
+  const { shapeSvg, bbox } = labelHelper(parent, node, undefined, true);
+
+  const w = bbox.width + node.padding;
+  const h = bbox.height + node.padding;
+
+  const shape = "M " + (-w * 3 / 5) + " 0"
+    + " L " + w * 4 / 5 + " 0"
+    + " A " + h + " " + h * 0.5 + " 90 0 0 " + h + " " + (-h)
+    + " L " + (-w * 3 / 5) + " " + h
+    + " L " + (-w) + " " + (-h / 2)
+    + " L" + (-w * 3 / 5) + " 0 Z";
+
+  const el = shapeSvg
+    .attr('label-offset-y', h/2)
+    .insert('path', ':first-child')
+    .attr('style', node.style)
+    .attr('d', shape)
+    .attr('transform', 'translate(' + -w / 2 + ',' + -(h / 2) + ')');
+
+  el.attr('style', node.style);
+
+  updateNodeBounds(node, el);
+
+  node.intersect = function (point) {
+    return intersect.rect(node, point);
+  };
+
+
+  return shapeSvg;
+};
+
 const start = (parent, node) => {
   const shapeSvg = parent
     .insert('g')
@@ -974,6 +1006,7 @@ const shapes = {
   manual_input,
   loop,
   inv_loop,
+  display,
   fork: forkJoin,
   join: forkJoin,
   class_box,
