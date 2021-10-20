@@ -295,18 +295,18 @@ function display(parent, bbox, node) {
   const h = bbox.height;
 
   const shape =
-    "M " + (-w) + " 0"
+    "M  0 0"
+    + " L " + (-h / 4) + " " + (h / 2)
+    + " L 0 " + h
     + " L " + w + " 0"
-    + " A " + h/2 + " " + h/4 + " 90 0 0 " + w + " " + (-h)
-    + " L " + (-w) + " " + h
-    + " L " + (-w -h/4) + " " + (-h / 2)
-    + " L" + (-w) + " 0 Z";
+    + " A " + h/2 + " " + (-h/4) + " 90 0 0 " + w + " " + h
+    + " L 0 0 Z";
 
   const shapeSvg = parent
     .attr('label-offset-y', h/2 )
     .insert('path', ':first-child')
     .attr('d', shape)
-    .attr('transform', 'translate(' + -w / 2 + ',' + -(h / 2) + ')');
+    .attr('transform', 'translate(' + -w / 2 + ',' + -h / 2 + ')');
 
     node.intersect = function (point) {
       return dagreD3.intersect.rect(node, point);
