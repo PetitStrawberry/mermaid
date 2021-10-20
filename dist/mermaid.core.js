@@ -11634,7 +11634,7 @@ var display = function display(parent, node) {
 
   var w = bbox.width + node.padding;
   var h = bbox.height + node.padding;
-  var shape = "M " + -w * 3 / 5 + " 0" + " L " + w * 4 / 5 + " 0" + " A " + h + " " + h * 0.5 + " 90 0 0 " + h + " " + -h + " L " + -w * 3 / 5 + " " + h + " L " + -w + " " + -h / 2 + " L" + -w * 3 / 5 + " 0 Z";
+  var shape = "M " + -w + " 0" + " L " + w + " 0" + " A " + h / 2 + " " + h / 4 + " 90 0 0 " + w + " " + -h + " L " + -w + " " + h + " L " + (-w - h / 4) + " " + -h / 2 + " L" + -w + " 0 Z";
   var el = shapeSvg.attr('label-offset-y', h / 2).insert('path', ':first-child').attr('style', node.style).attr('d', shape).attr('transform', 'translate(' + -w / 2 + ',' + -(h / 2) + ')');
   el.attr('style', node.style);
   (0,_shapes_util__WEBPACK_IMPORTED_MODULE_1__.updateNodeBounds)(node, el);
@@ -11949,6 +11949,7 @@ var shapes = {
   manual_input: manual_input,
   loop: loop,
   inv_loop: inv_loop,
+  display: display,
   fork: forkJoin,
   join: forkJoin,
   class_box: class_box
@@ -15884,7 +15885,7 @@ function inv_loop(parent, bbox, node) {
 function display(parent, bbox, node) {
   var w = bbox.width;
   var h = bbox.height;
-  var shape = "M " + -w * 3 / 5 + " 0" + " L " + w * 4 / 5 + " 0" + " A " + h + " " + h * 0.5 + " 90 0 0 " + h + " " + -h + " L " + -w * 3 / 5 + " " + h + " L " + -w + " " + -h / 2 + " L" + -w * 3 / 5 + " 0 Z";
+  var shape = "M " + -w + " 0" + " L " + w + " 0" + " A " + h / 2 + " " + h / 4 + " 90 0 0 " + w + " " + -h + " L " + -w + " " + h + " L " + (-w - h / 4) + " " + -h / 2 + " L" + -w + " 0 Z";
   var shapeSvg = parent.attr('label-offset-y', h / 2).insert('path', ':first-child').attr('d', shape).attr('transform', 'translate(' + -w / 2 + ',' + -(h / 2) + ')');
 
   node.intersect = function (point) {
@@ -15915,6 +15916,7 @@ function addToRender(render) {
   render.shapes().manual_input = manual_input;
   render.shapes().loop = loop;
   render.shapes().inv_loop = inv_loop;
+  render.shape().display = display;
 }
 function addToRenderV2(addShape) {
   addShape({

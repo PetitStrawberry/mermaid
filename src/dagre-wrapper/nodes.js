@@ -604,12 +604,13 @@ const display = (parent, node) => {
   const w = bbox.width + node.padding;
   const h = bbox.height + node.padding;
 
-  const shape = "M " + (-w * 3 / 5) + " 0"
-    + " L " + w * 4 / 5 + " 0"
-    + " A " + h + " " + h * 0.5 + " 90 0 0 " + h + " " + (-h)
-    + " L " + (-w * 3 / 5) + " " + h
-    + " L " + (-w) + " " + (-h / 2)
-    + " L" + (-w * 3 / 5) + " 0 Z";
+  const shape =
+    "M " + (-w) + " 0"
+    + " L " + w + " 0"
+    + " A " + h/2 + " " + h/4 + " 90 0 0 " + w + " " + (-h)
+    + " L " + (-w) + " " + h
+    + " L " + (-w -h/4) + " " + (-h / 2)
+    + " L" + (-w) + " 0 Z";
 
   const el = shapeSvg
     .attr('label-offset-y', h/2)
