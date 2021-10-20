@@ -11634,8 +11634,8 @@ var display = function display(parent, node) {
 
   var w = bbox.width + node.padding;
   var h = bbox.height + node.padding;
-  var shape = "M " + -w + " 0" + " L " + w + " 0" + " A " + h / 2 + " " + h / 4 + " 90 0 0 " + w + " " + h + " L " + -w + " " + h + " L " + (-w - h / 4) + " " + h / 2 + " L" + -w + " 0 Z";
-  var el = shapeSvg.attr('label-offset-y', h / 2).insert('path', ':first-child').attr('style', node.style).attr('d', shape).attr('transform', 'translate(' + -w / 2 + ',' + -(h / 2) + ')');
+  var shape = "M  0 0" + " L " + w + " 0" + " A " + h / 2 + " " + -h / 4 + " 90 0 0 " + w + " " + h + " L 0 " + h + " L " + -h / 4 + " " + h / 2 + " L 0 0 Z";
+  var el = shapeSvg.attr('label-offset-y', h / 2).insert('path', ':first-child').attr('style', node.style).attr('d', shape);
   el.attr('style', node.style);
   (0,_shapes_util__WEBPACK_IMPORTED_MODULE_1__.updateNodeBounds)(node, el);
 
