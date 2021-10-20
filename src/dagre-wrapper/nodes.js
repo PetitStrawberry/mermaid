@@ -607,9 +607,9 @@ const display = (parent, node) => {
   const shape =
     "M " + (-w) + " 0"
     + " L " + w + " 0"
-    + " A " + h/2 + " " + h/4 + " 90 0 0 " + w + " " + (-h)
+    + " A " + h/2 + " " + h/4 + " 90 0 0 " + w + " " + h
     + " L " + (-w) + " " + h
-    + " L " + (-w -h/4) + " " + (-h / 2)
+    + " L " + (-w -h/4) + " " + (h / 2)
     + " L" + (-w) + " 0 Z";
 
   const el = shapeSvg
