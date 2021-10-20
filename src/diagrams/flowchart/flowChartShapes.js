@@ -290,6 +290,31 @@ function inv_loop(parent, bbox, node) {
   return shapeSvg;
 }
 
+function display(parent, bbox, node) {
+  const w = bbox.width;
+  const h = bbox.height;
+
+  const shape =
+    "M  0 0"
+    + " L " + (-h / 4) + " " + (h / 2)
+    + " L 0 " + h
+    + " L " + w + " " + h
+    + " A " + h/2 + " " + (-h/4) + " 90 0 0 " + w + " 0"
+    + " L 0 0 Z";
+
+  const shapeSvg = parent
+    .attr('label-offset-y', h/2 )
+    .insert('path', ':first-child')
+    .attr('d', shape)
+    .attr('transform', 'translate(' + -w / 2 + ',' + -h / 2 + ')');
+
+    node.intersect = function (point) {
+      return dagreD3.intersect.rect(node, point);
+    };
+
+  return shapeSvg;
+}
+
 export function addToRender(render) {
   render.shapes().question = question;
   render.shapes().hexagon = hexagon;
@@ -320,6 +345,8 @@ export function addToRender(render) {
   render.shapes().loop = loop;
 
   render.shapes().inv_loop = inv_loop;
+
+  render.shapes().display = display;
 }
 
 export function addToRenderV2(addShape) {
@@ -352,6 +379,8 @@ export function addToRenderV2(addShape) {
   addShape({ loop });
 
   addShape({ inv_loop });
+
+  addShape({ display });
 }
 
 function insertPolygonShape(parent, w, h, points) {
