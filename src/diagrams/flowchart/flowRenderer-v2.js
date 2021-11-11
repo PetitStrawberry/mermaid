@@ -125,6 +125,18 @@ export const addVertices = function (vert, g, svgId) {
       case 'cylinder':
         _shape = 'cylinder';
         break;
+      case 'manual_input':
+          _shape = 'manual_input';
+        break;
+      case 'loop':
+          _shape = 'loop';
+        break;
+      case 'inv_loop':
+          _shape = 'inv_loop';
+        break;
+      case 'display':
+          _shape = 'display';
+          break;
       case 'group':
         _shape = 'rect';
         break;

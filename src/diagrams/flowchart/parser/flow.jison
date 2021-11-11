@@ -137,6 +137,10 @@ that id.
 "[/"                  return 'TRAPSTART';
 "/]"                  return 'INVTRAPEND';
 "[\\"                 return 'INVTRAPSTART';
+"{/"                  return 'LOOPSTART';
+"\\}"                 return 'LOOPEND';
+"{\\"                 return 'INVLOOPSTART';
+"/}"                  return 'INVLOOPEND';
 [!"#$%&'*+,-.`?\\_/]  return 'PUNCTUATION';
 [\u00AA\u00B5\u00BA\u00C0-\u00D6\u00D8-\u00F6]|
 [\u00F8-\u02C1\u02C6-\u02D1\u02E0-\u02E4\u02EC\u02EE\u0370-\u0374\u0376\u0377]|
@@ -398,6 +402,14 @@ vertex:  idString SQS text SQE
         {$$ = $1;yy.addVertex($1,$3,'lean_right');}
     | idString INVTRAPSTART text TRAPEND
         {$$ = $1;yy.addVertex($1,$3,'lean_left');}
+    | idString TRAPSTART text SUBROUTINEEND
+        {$$ = $1;yy.addVertex($1,$3,'manual_input');}
+    | idString LOOPSTART text LOOPEND
+        {$$ = $1;yy.addVertex($1,$3,'loop');}
+    | idString INVLOOPSTART text INVLOOPEND
+        {$$ = $1;yy.addVertex($1,$3,'inv_loop');}
+    | idString TAGSTART text PE
+        {$$ = $1;yy.addVertex($1,$3,'display');}
     | idString
         { /*console.warn('h: ', $1);*/$$ = $1;yy.addVertex($1);}
     ;
@@ -559,5 +571,5 @@ alphaNumToken  : PUNCTUATION | AMP | UNICODE_TEXT | NUM| ALPHA | COLON | COMMA |
 
 idStringToken  : ALPHA|UNDERSCORE |UNICODE_TEXT | NUM|  COLON | COMMA | PLUS | MINUS | DOWN |EQUALS | MULT | BRKT | DOT | PUNCTUATION | AMP;
 
-graphCodeTokens: STADIUMSTART | STADIUMEND | SUBROUTINESTART | SUBROUTINEEND | CYLINDERSTART | CYLINDEREND | TRAPSTART | TRAPEND | INVTRAPSTART | INVTRAPEND | PIPE | PS | PE | SQS | SQE | DIAMOND_START | DIAMOND_STOP | TAGSTART | TAGEND | ARROW_CROSS | ARROW_POINT | ARROW_CIRCLE | ARROW_OPEN | QUOTE | SEMI;
+graphCodeTokens: STADIUMSTART | STADIUMEND | SUBROUTINESTART | SUBROUTINEEND | CYLINDERSTART | CYLINDEREND | TRAPSTART | TRAPEND | INVTRAPSTART | INVTRAPEND | LOOPSTART | LOOPEND| INVLOOPSTART | INVLOOPEND | PIPE | PS | PE | SQS | SQE | DIAMOND_START | DIAMOND_STOP | TAGSTART | TAGEND | ARROW_CROSS | ARROW_POINT | ARROW_CIRCLE | ARROW_OPEN | QUOTE | SEMI;
 %%

@@ -525,6 +525,112 @@ const subroutine = (parent, node) => {
   return shapeSvg;
 };
 
+const manual_input = (parent, node) => {
+  const { shapeSvg, bbox } = labelHelper(parent, node, undefined, true);
+
+  const w = bbox.width + node.padding;
+  const h = bbox.height + node.padding;
+  const points = [
+    { x: 0, y: 0 },
+    { x: w, y: 0 },
+    { x: w, y: -h*5/4 },
+    { x: 0, y: -h },
+  ];
+
+  const el = insertPolygonShape(shapeSvg, w, h*5/4, points);
+  el.attr('style', node.style);
+  updateNodeBounds(node, el);
+
+  node.intersect = function (point) {
+    return intersect.polygon(node, points, point);
+  };
+
+  return shapeSvg;
+};
+
+const loop = (parent, node) => {
+  const { shapeSvg, bbox } = labelHelper(parent, node, undefined, true);
+
+  const w = bbox.width + node.padding;
+  const h = bbox.height + node.padding;
+  const points = [
+    { x: (-2 * h) / 8, y: -h*3/4 },
+    { x: (-2 * h) / 8, y: 0 },
+    { x: w + (2 * h) / 8, y: 0 },
+    { x: w + (2 * h) / 8, y: -h*3/4 },
+    { x: w - h / 6, y: -h },
+    { x: h / 6, y: -h }
+  ];
+
+  const el = insertPolygonShape(shapeSvg, w, h, points);
+  el.attr('style', node.style);
+  updateNodeBounds(node, el);
+
+  node.intersect = function (point) {
+    return intersect.polygon(node, points, point);
+  };
+
+  return shapeSvg;
+};
+
+const inv_loop = (parent, node) => {
+  const { shapeSvg, bbox } = labelHelper(parent, node, undefined, true);
+
+  const w = bbox.width + node.padding;
+  const h = bbox.height + node.padding;
+  const points = [
+    { x: h / 6, y: 0 },
+    { x: w - h / 6, y: 0 },
+    { x: w + (2 * h) / 8, y: -h/4 },
+    { x: w + (2 * h) / 8, y: -h },
+    { x: (-2 * h) / 8, y: -h },
+    { x: (-2 * h) / 8, y: -h/4 }
+  ];
+
+  const el = insertPolygonShape(shapeSvg, w, h, points);
+  el.attr('style', node.style);
+  updateNodeBounds(node, el);
+
+  node.intersect = function (point) {
+    return intersect.polygon(node, points, point);
+  };
+
+  return shapeSvg;
+};
+
+const display = (parent, node) => {
+  const { shapeSvg, bbox } = labelHelper(parent, node, undefined, true);
+
+  const w = bbox.width + node.padding;
+  const h = bbox.height + node.padding;
+
+  const shape =
+    "M  0 0"
+    + " L " + (-h / 4) + " " + (h / 2)
+    + " L 0 " + h
+    + " L " + w + " " + h
+    + " A " + h/2 + " " + (-h/4) + " 90 0 0 " + w + " 0"
+    + " L 0 0 Z";
+
+  const el = shapeSvg
+    .attr('label-offset-y', h/2)
+    .insert('path', ':first-child')
+    .attr('style', node.style)
+    .attr('d', shape)
+    .attr('transform', 'translate(' + -w / 2 + ',' + -h / 2 + ')');
+
+  el.attr('style', node.style);
+
+  updateNodeBounds(node, el);
+
+  node.intersect = function (point) {
+    return intersect.rect(node, point);
+  };
+
+
+  return shapeSvg;
+};
+
 const start = (parent, node) => {
   const shapeSvg = parent
     .insert('g')
@@ -898,6 +1004,10 @@ const shapes = {
   end,
   note,
   subroutine,
+  manual_input,
+  loop,
+  inv_loop,
+  display,
   fork: forkJoin,
   join: forkJoin,
   class_box,
