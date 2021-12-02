@@ -6,6 +6,7 @@ coverage/
 
 dist/*.js
 dist/*.map
+dist/*.mjs
 
 yarn-error.log
 .npmrc
