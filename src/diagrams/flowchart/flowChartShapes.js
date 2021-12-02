@@ -1,5 +1,10 @@
 import dagreD3 from 'dagre-d3';
 
+/**
+ * @param parent
+ * @param bbox
+ * @param node
+ */
 function question(parent, bbox, node) {
   const w = bbox.width;
   const h = bbox.height;
@@ -17,6 +22,11 @@ function question(parent, bbox, node) {
   return shapeSvg;
 }
 
+/**
+ * @param parent
+ * @param bbox
+ * @param node
+ */
 function hexagon(parent, bbox, node) {
   const f = 4;
   const h = bbox.height;
@@ -37,6 +47,11 @@ function hexagon(parent, bbox, node) {
   return shapeSvg;
 }
 
+/**
+ * @param parent
+ * @param bbox
+ * @param node
+ */
 function rect_left_inv_arrow(parent, bbox, node) {
   const w = bbox.width;
   const h = bbox.height;
@@ -54,6 +69,11 @@ function rect_left_inv_arrow(parent, bbox, node) {
   return shapeSvg;
 }
 
+/**
+ * @param parent
+ * @param bbox
+ * @param node
+ */
 function lean_right(parent, bbox, node) {
   const w = bbox.width;
   const h = bbox.height;
@@ -70,6 +90,11 @@ function lean_right(parent, bbox, node) {
   return shapeSvg;
 }
 
+/**
+ * @param parent
+ * @param bbox
+ * @param node
+ */
 function lean_left(parent, bbox, node) {
   const w = bbox.width;
   const h = bbox.height;
@@ -86,6 +111,11 @@ function lean_left(parent, bbox, node) {
   return shapeSvg;
 }
 
+/**
+ * @param parent
+ * @param bbox
+ * @param node
+ */
 function trapezoid(parent, bbox, node) {
   const w = bbox.width;
   const h = bbox.height;
@@ -102,6 +132,11 @@ function trapezoid(parent, bbox, node) {
   return shapeSvg;
 }
 
+/**
+ * @param parent
+ * @param bbox
+ * @param node
+ */
 function inv_trapezoid(parent, bbox, node) {
   const w = bbox.width;
   const h = bbox.height;
@@ -118,6 +153,11 @@ function inv_trapezoid(parent, bbox, node) {
   return shapeSvg;
 }
 
+/**
+ * @param parent
+ * @param bbox
+ * @param node
+ */
 function rect_right_inv_arrow(parent, bbox, node) {
   const w = bbox.width;
   const h = bbox.height;
@@ -135,6 +175,11 @@ function rect_right_inv_arrow(parent, bbox, node) {
   return shapeSvg;
 }
 
+/**
+ * @param parent
+ * @param bbox
+ * @param node
+ */
 function stadium(parent, bbox, node) {
   const h = bbox.height;
   const w = bbox.width + h / 4;
@@ -154,6 +199,11 @@ function stadium(parent, bbox, node) {
   return shapeSvg;
 }
 
+/**
+ * @param parent
+ * @param bbox
+ * @param node
+ */
 function subroutine(parent, bbox, node) {
   const w = bbox.width;
   const h = bbox.height;
@@ -176,6 +226,11 @@ function subroutine(parent, bbox, node) {
   return shapeSvg;
 }
 
+/**
+ * @param parent
+ * @param bbox
+ * @param node
+ */
 function cylinder(parent, bbox, node) {
   const w = bbox.width;
   const rx = w / 2;
@@ -245,10 +300,10 @@ function manual_input(parent, bbox, node) {
   const points = [
     { x: 0, y: 0 },
     { x: w, y: 0 },
-    { x: w, y: -h*5/4 },
+    { x: w, y: -h * 5 / 4 },
     { x: 0, y: -h },
   ];
-  const shapeSvg = insertPolygonShape(parent, w, h*5/4, points);
+  const shapeSvg = insertPolygonShape(parent, w, h * 5 / 4, points);
   node.intersect = function (point) {
     return dagreD3.intersect.polygon(node, points, point);
   };
@@ -259,10 +314,10 @@ function loop(parent, bbox, node) {
   const w = bbox.width;
   const h = bbox.height;
   const points = [
-    { x: (-2 * h) / 4, y: -h*3/4 },
+    { x: (-2 * h) / 4, y: -h * 3 / 4 },
     { x: (-2 * h) / 4, y: 0 },
     { x: w + (2 * h) / 4, y: 0 },
-    { x: w + (2 * h) / 4, y: -h*3/4 },
+    { x: w + (2 * h) / 4, y: -h * 3 / 4 },
     { x: w - h / 6, y: -h },
     { x: h / 6, y: -h }
   ];
@@ -278,10 +333,10 @@ function inv_loop(parent, bbox, node) {
   const points = [
     { x: h / 6, y: 0 },
     { x: w - h / 6, y: 0 },
-    { x: w + (2 * h) / 8, y: -h/4 },
+    { x: w + (2 * h) / 8, y: -h / 4 },
     { x: w + (2 * h) / 8, y: -h },
     { x: (-2 * h) / 8, y: -h },
-    { x: (-2 * h) / 8, y: -h/4 }
+    { x: (-2 * h) / 8, y: -h / 4 }
   ];
   const shapeSvg = insertPolygonShape(parent, w, h, points);
   node.intersect = function (point) {
@@ -299,22 +354,23 @@ function display(parent, bbox, node) {
     + " L " + (-h / 4) + " " + (h / 2)
     + " L 0 " + h
     + " L " + w + " " + h
-    + " A " + h/2 + " " + (-h/4) + " 90 0 0 " + w + " 0"
+    + " A " + h / 2 + " " + (-h / 4) + " 90 0 0 " + w + " 0"
     + " L 0 0 Z";
 
   const shapeSvg = parent
-    .attr('label-offset-y', h/2 )
+    .attr('label-offset-y', h / 2)
     .insert('path', ':first-child')
     .attr('d', shape)
     .attr('transform', 'translate(' + -w / 2 + ',' + -h / 2 + ')');
 
-    node.intersect = function (point) {
-      return dagreD3.intersect.rect(node, point);
-    };
+  node.intersect = function (point) {
+    return dagreD3.intersect.rect(node, point);
+  };
 
   return shapeSvg;
 }
 
+/** @param render */
 export function addToRender(render) {
   render.shapes().question = question;
   render.shapes().hexagon = hexagon;
@@ -349,6 +405,7 @@ export function addToRender(render) {
   render.shapes().display = display;
 }
 
+/** @param addShape */
 export function addToRenderV2(addShape) {
   addShape({ question });
   addShape({ hexagon });
@@ -383,6 +440,12 @@ export function addToRenderV2(addShape) {
   addShape({ display });
 }
 
+/**
+ * @param parent
+ * @param w
+ * @param h
+ * @param points
+ */
 function insertPolygonShape(parent, w, h, points) {
   return parent
     .insert('polygon', ':first-child')
