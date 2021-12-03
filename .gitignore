@@ -8,6 +8,8 @@ dist/*.js
 dist/*.map
 dist/*.mjs
 
+.cache/
+
 yarn-error.log
 .npmrc
 token
