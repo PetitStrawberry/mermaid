@@ -1,0 +1,3 @@
+dist/*.js merge=ours
+dist/*.mjs merge=ours
+dist/*.map merge=ours
