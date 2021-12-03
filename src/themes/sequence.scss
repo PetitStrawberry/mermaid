@@ -52,12 +52,14 @@ text.actor > tspan {
   fill: $labelBoxBkgColor;
 }
 
-.labelText, .labelText > tspan {
+.labelText,
+.labelText > tspan {
   fill: $labelTextColor;
   stroke: none;
 }
 
-.loopText, .loopText > tspan {
+.loopText,
+.loopText > tspan {
   fill: $loopTextColor;
   stroke: none;
 }
@@ -75,7 +77,8 @@ text.actor > tspan {
   fill: $noteBkgColor;
 }
 
-.noteText, .noteText > tspan {
+.noteText,
+.noteText > tspan {
   fill: $noteTextColor;
   stroke: none;
 }

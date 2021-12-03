@@ -300,10 +300,10 @@ function manual_input(parent, bbox, node) {
   const points = [
     { x: 0, y: 0 },
     { x: w, y: 0 },
-    { x: w, y: -h * 5 / 4 },
+    { x: w, y: (-h * 5) / 4 },
     { x: 0, y: -h },
   ];
-  const shapeSvg = insertPolygonShape(parent, w, h * 5 / 4, points);
+  const shapeSvg = insertPolygonShape(parent, w, (h * 5) / 4, points);
   node.intersect = function (point) {
     return dagreD3.intersect.polygon(node, points, point);
   };
@@ -314,12 +314,12 @@ function loop(parent, bbox, node) {
   const w = bbox.width;
   const h = bbox.height;
   const points = [
-    { x: (-2 * h) / 4, y: -h * 3 / 4 },
+    { x: (-2 * h) / 4, y: (-h * 3) / 4 },
     { x: (-2 * h) / 4, y: 0 },
     { x: w + (2 * h) / 4, y: 0 },
-    { x: w + (2 * h) / 4, y: -h * 3 / 4 },
+    { x: w + (2 * h) / 4, y: (-h * 3) / 4 },
     { x: w - h / 6, y: -h },
-    { x: h / 6, y: -h }
+    { x: h / 6, y: -h },
   ];
   const shapeSvg = insertPolygonShape(parent, w, h, points);
   node.intersect = function (point) {
@@ -336,7 +336,7 @@ function inv_loop(parent, bbox, node) {
     { x: w + (2 * h) / 8, y: -h / 4 },
     { x: w + (2 * h) / 8, y: -h },
     { x: (-2 * h) / 8, y: -h },
-    { x: (-2 * h) / 8, y: -h / 4 }
+    { x: (-2 * h) / 8, y: -h / 4 },
   ];
   const shapeSvg = insertPolygonShape(parent, w, h, points);
   node.intersect = function (point) {
@@ -350,12 +350,25 @@ function display(parent, bbox, node) {
   const h = bbox.height;
 
   const shape =
-    "M  0 0"
-    + " L " + (-h / 4) + " " + (h / 2)
-    + " L 0 " + h
-    + " L " + w + " " + h
-    + " A " + h / 2 + " " + (-h / 4) + " 90 0 0 " + w + " 0"
-    + " L 0 0 Z";
+    'M  0 0' +
+    ' L ' +
+    -h / 4 +
+    ' ' +
+    h / 2 +
+    ' L 0 ' +
+    h +
+    ' L ' +
+    w +
+    ' ' +
+    h +
+    ' A ' +
+    h / 2 +
+    ' ' +
+    -h / 4 +
+    ' 90 0 0 ' +
+    w +
+    ' 0' +
+    ' L 0 0 Z';
 
   const shapeSvg = parent
     .attr('label-offset-y', h / 2)

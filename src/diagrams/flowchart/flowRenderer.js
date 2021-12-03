@@ -130,17 +130,17 @@ export const addVertices = function (vert, g, svgId) {
         _shape = 'cylinder';
         break;
       case 'manual_input':
-          _shape = 'manual_input';
+        _shape = 'manual_input';
         break;
       case 'loop':
-          _shape = 'loop';
+        _shape = 'loop';
         break;
       case 'inv_loop':
-          _shape = 'inv_loop';
+        _shape = 'inv_loop';
         break;
       case 'display':
-          _shape = 'display';
-          break;
+        _shape = 'display';
+        break;
       case 'group':
         _shape = 'rect';
         break;
@@ -470,7 +470,8 @@ export const draw = function (text, id) {
   }
 
   // Add label rects for non html labels
-  if (!evaluate(conf.htmlLabels) || true) { // eslint-disable-line
+  if (!evaluate(conf.htmlLabels) || true) {
+    // eslint-disable-line
     const labels = document.querySelectorAll('[id="' + id + '"] .edgeLabel .label');
     for (let k = 0; k < labels.length; k++) {
       const label = labels[k];

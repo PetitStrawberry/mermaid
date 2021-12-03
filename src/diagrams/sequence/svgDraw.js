@@ -912,7 +912,8 @@ const _drawTextCandidateFunc = (function () {
    */
   function _setTextAttrs(toText, fromTextAttrsDict) {
     for (const key in fromTextAttrsDict) {
-      if (fromTextAttrsDict.hasOwnProperty(key)) { // eslint-disable-line
+      if (fromTextAttrsDict.hasOwnProperty(key)) {
+        // eslint-disable-line
         toText.attr(key, fromTextAttrsDict[key]);
       }
     }
@@ -1020,7 +1021,8 @@ const _drawMenuItemTextCandidateFunc = (function () {
    */
   function _setTextAttrs(toText, fromTextAttrsDict) {
     for (const key in fromTextAttrsDict) {
-      if (fromTextAttrsDict.hasOwnProperty(key)) { // eslint-disable-line
+      if (fromTextAttrsDict.hasOwnProperty(key)) {
+        // eslint-disable-line
         toText.attr(key, fromTextAttrsDict[key]);
       }
     }
