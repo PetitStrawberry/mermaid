@@ -18181,10 +18181,10 @@ var draw = function draw(text, id) {
       }
     }
   } // Add label rects for non html labels
+  // eslint-disable-next-line
 
 
   if (!(0,_common_common__WEBPACK_IMPORTED_MODULE_5__.evaluate)(conf.htmlLabels) || true) {
-    // eslint-disable-line
     var labels = document.querySelectorAll('[id="' + id + '"] .edgeLabel .label');
 
     for (var k = 0; k < labels.length; k++) {
