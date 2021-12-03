@@ -11719,7 +11719,7 @@ var display = function display(parent, node) {
 
   var w = bbox.width + node.padding;
   var h = bbox.height + node.padding;
-  var shape = "M  0 0" + " L " + -h / 4 + " " + h / 2 + " L 0 " + h + " L " + w + " " + h + " A " + h / 2 + " " + -h / 4 + " 90 0 0 " + w + " 0" + " L 0 0 Z";
+  var shape = 'M  0 0' + ' L ' + -h / 4 + ' ' + h / 2 + ' L 0 ' + h + ' L ' + w + ' ' + h + ' A ' + h / 2 + ' ' + -h / 4 + ' 90 0 0 ' + w + ' 0' + ' L 0 0 Z';
   var el = shapeSvg.attr('label-offset-y', h / 2).insert('path', ':first-child').attr('style', node.style).attr('d', shape).attr('transform', 'translate(' + -w / 2 + ',' + -h / 2 + ')');
   el.attr('style', node.style);
   (0,_shapes_util__WEBPACK_IMPORTED_MODULE_1__.updateNodeBounds)(node, el);
@@ -16117,7 +16117,7 @@ function inv_loop(parent, bbox, node) {
 function display(parent, bbox, node) {
   var w = bbox.width;
   var h = bbox.height;
-  var shape = "M  0 0" + " L " + -h / 4 + " " + h / 2 + " L 0 " + h + " L " + w + " " + h + " A " + h / 2 + " " + -h / 4 + " 90 0 0 " + w + " 0" + " L 0 0 Z";
+  var shape = 'M  0 0' + ' L ' + -h / 4 + ' ' + h / 2 + ' L 0 ' + h + ' L ' + w + ' ' + h + ' A ' + h / 2 + ' ' + -h / 4 + ' 90 0 0 ' + w + ' 0' + ' L 0 0 Z';
   var shapeSvg = parent.attr('label-offset-y', h / 2).insert('path', ':first-child').attr('d', shape).attr('transform', 'translate(' + -w / 2 + ',' + -h / 2 + ')');
 
   node.intersect = function (point) {
