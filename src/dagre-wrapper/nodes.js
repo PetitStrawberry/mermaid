@@ -313,6 +313,8 @@ const rect = (parent, node) => {
   // add the rect
   const rect = shapeSvg.insert('rect', ':first-child');
 
+  const totalWidth = bbox.width + node.padding;
+  const totalHeight = bbox.height + node.padding;
   rect
     .attr('class', 'basic label-container')
     .attr('style', node.style)
@@ -320,8 +322,19 @@ const rect = (parent, node) => {
     .attr('ry', node.ry)
     .attr('x', -bbox.width / 2 - halfPadding)
     .attr('y', -bbox.height / 2 - halfPadding)
-    .attr('width', bbox.width + node.padding)
-    .attr('height', bbox.height + node.padding);
+    .attr('width', totalWidth)
+    .attr('height', totalHeight);
+
+  if (node.props) {
+    const propKeys = new Set(Object.keys(node.props));
+    if (node.props.borders) {
+      applyNodePropertyBorders(rect, node.props.borders, totalWidth, totalHeight);
+      propKeys.delete('borders');
+    }
+    propKeys.forEach((propKey) => {
+      log.warn(`Unknown node property ${propKey}`);
+    });
+  }
 
   updateNodeBounds(node, rect);
 
@@ -331,6 +344,43 @@ const rect = (parent, node) => {
 
   return shapeSvg;
 };
+
+function applyNodePropertyBorders(rect, borders, totalWidth, totalHeight) {
+  const strokeDashArray = [];
+  const addBorder = (length) => {
+    strokeDashArray.push(length);
+    strokeDashArray.push(0);
+  };
+  const skipBorder = (length) => {
+    strokeDashArray.push(0);
+    strokeDashArray.push(length);
+  };
+  if (borders.includes('t')) {
+    log.debug('add top border');
+    addBorder(totalWidth);
+  } else {
+    skipBorder(totalWidth);
+  }
+  if (borders.includes('r')) {
+    log.debug('add right border');
+    addBorder(totalHeight);
+  } else {
+    skipBorder(totalHeight);
+  }
+  if (borders.includes('b')) {
+    log.debug('add bottom border');
+    addBorder(totalWidth);
+  } else {
+    skipBorder(totalWidth);
+  }
+  if (borders.includes('l')) {
+    log.debug('add left border');
+    addBorder(totalHeight);
+  } else {
+    skipBorder(totalHeight);
+  }
+  rect.attr('stroke-dasharray', strokeDashArray.join(' '));
+}
 
 const rectWithTitle = (parent, node) => {
   // const { shapeSvg, bbox, halfPadding } = labelHelper(parent, node, 'node ' + node.classes);
@@ -533,11 +583,11 @@ const manual_input = (parent, node) => {
   const points = [
     { x: 0, y: 0 },
     { x: w, y: 0 },
-    { x: w, y: -h*5/4 },
+    { x: w, y: (-h * 5) / 4 },
     { x: 0, y: -h },
   ];
 
-  const el = insertPolygonShape(shapeSvg, w, h*5/4, points);
+  const el = insertPolygonShape(shapeSvg, w, (h * 5) / 4, points);
   el.attr('style', node.style);
   updateNodeBounds(node, el);
 
@@ -554,12 +604,12 @@ const loop = (parent, node) => {
   const w = bbox.width + node.padding;
   const h = bbox.height + node.padding;
   const points = [
-    { x: (-2 * h) / 8, y: -h*3/4 },
+    { x: (-2 * h) / 8, y: (-h * 3) / 4 },
     { x: (-2 * h) / 8, y: 0 },
     { x: w + (2 * h) / 8, y: 0 },
-    { x: w + (2 * h) / 8, y: -h*3/4 },
+    { x: w + (2 * h) / 8, y: (-h * 3) / 4 },
     { x: w - h / 6, y: -h },
-    { x: h / 6, y: -h }
+    { x: h / 6, y: -h },
   ];
 
   const el = insertPolygonShape(shapeSvg, w, h, points);
@@ -581,10 +631,10 @@ const inv_loop = (parent, node) => {
   const points = [
     { x: h / 6, y: 0 },
     { x: w - h / 6, y: 0 },
-    { x: w + (2 * h) / 8, y: -h/4 },
+    { x: w + (2 * h) / 8, y: -h / 4 },
     { x: w + (2 * h) / 8, y: -h },
     { x: (-2 * h) / 8, y: -h },
-    { x: (-2 * h) / 8, y: -h/4 }
+    { x: (-2 * h) / 8, y: -h / 4 },
   ];
 
   const el = insertPolygonShape(shapeSvg, w, h, points);
@@ -605,15 +655,28 @@ const display = (parent, node) => {
   const h = bbox.height + node.padding;
 
   const shape =
-    "M  0 0"
-    + " L " + (-h / 4) + " " + (h / 2)
-    + " L 0 " + h
-    + " L " + w + " " + h
-    + " A " + h/2 + " " + (-h/4) + " 90 0 0 " + w + " 0"
-    + " L 0 0 Z";
+    'M  0 0' +
+    ' L ' +
+    -h / 4 +
+    ' ' +
+    h / 2 +
+    ' L 0 ' +
+    h +
+    ' L ' +
+    w +
+    ' ' +
+    h +
+    ' A ' +
+    h / 2 +
+    ' ' +
+    -h / 4 +
+    ' 90 0 0 ' +
+    w +
+    ' 0' +
+    ' L 0 0 Z';
 
   const el = shapeSvg
-    .attr('label-offset-y', h/2)
+    .attr('label-offset-y', h / 2)
     .insert('path', ':first-child')
     .attr('style', node.style)
     .attr('d', shape)
@@ -626,7 +689,6 @@ const display = (parent, node) => {
   node.intersect = function (point) {
     return intersect.rect(node, point);
   };
-
 
   return shapeSvg;
 };

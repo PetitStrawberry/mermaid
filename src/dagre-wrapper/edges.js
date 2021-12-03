@@ -1,6 +1,5 @@
 import { log } from '../logger'; // eslint-disable-line
 import createLabel from './createLabel';
-// import { line, curveBasis, curveLinear, select } from 'd3';
 import { line, curveBasis, select } from 'd3';
 import { getConfig } from '../config';
 import utils from '../utils';
@@ -110,6 +109,10 @@ export const insertEdgeLabel = (elem, edge) => {
   }
 };
 
+/**
+ * @param {any} fo
+ * @param {any} value
+ */
 function setTerminalWidth(fo, value) {
   if (getConfig().flowchart.htmlLabels && fo) {
     fo.style.width = value.length * 9 + 'px';
@@ -250,7 +253,8 @@ export const intersection = (node, outsidePoint, insidePoint) => {
   const Q = Math.abs(outsidePoint.y - insidePoint.y);
   const R = Math.abs(outsidePoint.x - insidePoint.x);
   // log.warn();
-  if (Math.abs(y - outsidePoint.y) * w > Math.abs(x - outsidePoint.x) * h) { // eslint-disable-line
+  if (Math.abs(y - outsidePoint.y) * w > Math.abs(x - outsidePoint.x) * h) {
+    // eslint-disable-line
     // Intersection is top or bottom of rect.
     // let q = insidePoint.y < outsidePoint.y ? outsidePoint.y - h - y : y - h - outsidePoint.y;
     let q = insidePoint.y < outsidePoint.y ? outsidePoint.y - h - y : y - h - outsidePoint.y;
@@ -306,9 +310,10 @@ export const intersection = (node, outsidePoint, insidePoint) => {
 /**
  * This function will page a path and node where the last point(s) in the path is inside the node
  * and return an update path ending by the border of the node.
- * @param {*} points
- * @param {*} boundryNode
- * @returns
+ *
+ * @param {Array} _points
+ * @param {any} boundryNode
+ * @returns {Array} Points
  */
 const cutPathAtIntersect = (_points, boundryNode) => {
   log.warn('abc88 cutPathAtIntersect', _points, boundryNode);

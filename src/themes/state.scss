@@ -10,7 +10,6 @@ g.stateGroup text {
   fill: $titleColor;
   stroke: none;
   font-size: 10px;
-
 }
 g.statediagram-cluster .cluster-label text {
   fill: $titleColor;
@@ -38,12 +37,12 @@ g.stateGroup line {
 
 .stateGroup .composit {
   fill: white;
-  border-bottom: 1px
+  border-bottom: 1px;
 }
 
 .stateGroup .alt-composit {
   fill: #e0e0e0;
-  border-bottom: 1px
+  border-bottom: 1px;
 }
 
 .state-note {
@@ -83,10 +82,10 @@ g.stateGroup line {
 .node circle.state-end {
   fill: black;
   stroke: white;
-  stroke-width: 1.5
+  stroke-width: 1.5;
 }
 #statediagram-barbEnd {
-  fill: $nodeBorder
+  fill: $nodeBorder;
 }
 
 .statediagram-cluster rect {
@@ -114,8 +113,8 @@ g.stateGroup line {
 }
 
 .statediagram-cluster .inner {
-  rx:0;
-  ry:0;
+  rx: 0;
+  ry: 0;
 }
 
 .statediagram-state rect.basic {
@@ -123,7 +122,7 @@ g.stateGroup line {
   ry: 5px;
 }
 .statediagram-state rect.divider {
-  stroke-dasharray: 10,10;
+  stroke-dasharray: 10, 10;
   fill: #efefef;
 }
 

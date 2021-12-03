@@ -22,8 +22,10 @@ export const setConf = function (cnf) {
 
 /**
  * Function that adds the vertices found in the graph definition to the graph to be rendered.
+ *
  * @param vert Object containing the vertices.
  * @param g The graph that is to be drawn.
+ * @param svgId
  */
 export const addVertices = function (vert, g, svgId) {
   const svg = select(`[id="${svgId}"]`);
@@ -35,6 +37,7 @@ export const addVertices = function (vert, g, svgId) {
 
     /**
      * Variable for storing the classes for the vertex
+     *
      * @type {string}
      */
     let classStr = 'default';
@@ -127,17 +130,17 @@ export const addVertices = function (vert, g, svgId) {
         _shape = 'cylinder';
         break;
       case 'manual_input':
-          _shape = 'manual_input';
+        _shape = 'manual_input';
         break;
       case 'loop':
-          _shape = 'loop';
+        _shape = 'loop';
         break;
       case 'inv_loop':
-          _shape = 'inv_loop';
+        _shape = 'inv_loop';
         break;
       case 'display':
-          _shape = 'display';
-          break;
+        _shape = 'display';
+        break;
       case 'group':
         _shape = 'rect';
         break;
@@ -162,8 +165,9 @@ export const addVertices = function (vert, g, svgId) {
 
 /**
  * Add edges to graph based on parsed graph defninition
- * @param {Object} edges The edges to add to the graph
- * @param {Object} g The graph object
+ *
+ * @param {object} edges The edges to add to the graph
+ * @param {object} g The graph object
  */
 export const addEdges = function (edges, g) {
   let cnt = 0;
@@ -269,7 +273,9 @@ export const addEdges = function (edges, g) {
 
 /**
  * Returns the all the styles from classDef statements in the graph definition.
- * @returns {object} classDef styles
+ *
+ * @param text
+ * @returns {object} ClassDef styles
  */
 export const getClasses = function (text) {
   log.info('Extracting classes');
@@ -288,6 +294,7 @@ export const getClasses = function (text) {
 
 /**
  * Draws a flowchart in the tag with id: id based on the graph definition in text.
+ *
  * @param text
  * @param id
  */
@@ -463,7 +470,8 @@ export const draw = function (text, id) {
   }
 
   // Add label rects for non html labels
-  if (!evaluate(conf.htmlLabels) || true) { // eslint-disable-line
+  // eslint-disable-next-line
+  if (!evaluate(conf.htmlLabels) || true) {
     const labels = document.querySelectorAll('[id="' + id + '"] .edgeLabel .label');
     for (let k = 0; k < labels.length; k++) {
       const label = labels[k];

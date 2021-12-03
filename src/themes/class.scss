@@ -47,7 +47,7 @@ g.classGroup line {
   fill: none;
 }
 
-.dashed-line{
+.dashed-line {
   stroke-dasharray: 3;
 }
 
@@ -57,11 +57,13 @@ g.classGroup line {
   stroke-width: 1;
 }
 
-#compositionStart, .composition {
+#compositionStart,
+.composition {
   @include composition;
 }
 
-#compositionEnd, .composition {
+#compositionEnd,
+.composition {
   @include composition;
 }
 
@@ -71,26 +73,32 @@ g.classGroup line {
   stroke-width: 1;
 }
 
-#aggregationStart, .aggregation {
+#aggregationStart,
+.aggregation {
   @include aggregation;
 }
 
-#aggregationEnd, .aggregation {
+#aggregationEnd,
+.aggregation {
   @include aggregation;
 }
 
-#dependencyStart, .dependency {
+#dependencyStart,
+.dependency {
   @include composition;
 }
 
-#dependencyEnd, .dependency {
+#dependencyEnd,
+.dependency {
   @include composition;
 }
 
-#extensionStart , .extension{
+#extensionStart,
+.extension {
   @include composition;
 }
 
-#extensionEnd, .extension {
+#extensionEnd,
+.extension {
   @include composition;
 }

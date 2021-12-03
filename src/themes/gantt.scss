@@ -1,7 +1,7 @@
 /** Section styling */
 
 .mermaid-main-font {
-  font-family: "trebuchet ms", verdana, arial;
+  font-family: 'trebuchet ms', verdana, arial;
   font-family: var(--mermaid-font-family);
 }
 
@@ -46,9 +46,7 @@
   text-height: 14px;
   font-family: 'trebuchet ms', verdana, arial;
   font-family: var(--mermaid-font-family);
-
 }
-
 
 /* Grid and axis */
 
@@ -66,7 +64,6 @@
   stroke-width: 0;
 }
 
-
 /* Today line */
 
 .today {
@@ -74,7 +71,6 @@
   stroke: $todayLineColor;
   stroke-width: 2px;
 }
-
 
 /* Task styling */
 
@@ -100,7 +96,6 @@
   font-size: 11px;
   font-family: 'trebuchet ms', verdana, arial;
   font-family: var(--mermaid-font-family);
-
 }
 
 .taskTextOutsideLeft {
@@ -149,8 +144,7 @@
 }
 
 .taskTextOutside0,
-.taskTextOutside2
-{
+.taskTextOutside2 {
   fill: $taskTextOutsideColor;
 }
 
@@ -158,7 +152,6 @@
 .taskTextOutside3 {
   fill: $taskTextOutsideColor;
 }
-
 
 /* Active task */
 
@@ -177,7 +170,6 @@
   fill: $taskTextDarkColor !important;
 }
 
-
 /* Completed task */
 
 .done0,
@@ -195,7 +187,6 @@
 .doneText3 {
   fill: $taskTextDarkColor !important;
 }
-
 
 /* Tasks on the critical line */
 
@@ -229,7 +220,7 @@
 }
 
 .milestone {
-  transform: rotate(45deg) scale(0.8,0.8);
+  transform: rotate(45deg) scale(0.8, 0.8);
 }
 
 .milestoneText {
