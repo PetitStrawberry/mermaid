@@ -29,7 +29,7 @@ jobs:
         run: yarn add prettier-plugin-jsdoc
 
       - name: Prettify code
-        run: npx prettier --write src/*
+        run: npx prettier --write 'src/**/*.js'
 
       - uses: stefanzweifel/git-auto-commit-action@v3.0.0
         with:
