@@ -65,5 +65,5 @@ jobs:
     #    parallel-finished: true
 
     - uses: stefanzweifel/git-auto-commit-action@v3.0.0
-        with:
+      with:
           commit_message: Push Dev Product
