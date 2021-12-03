@@ -28,10 +28,11 @@ jobs:
       - name: Install prettier-plugin-jsdoc
         run: yarn add prettier-plugin-jsdoc
 
-      - name: actionsx/prettier
-        # You may pin to the exact commit or the version.
-        # uses: actionsx/prettier@13639c769e72c3e51d53ae383b681a684c883233
-        uses: actionsx/prettier@v2
+      - name: Prettify code
+        uses: creyD/prettier_action@v4.1
+        with:
+          # This part is also where you can pass other options, for example:
+          prettier_options: --write "src/**/*.{ts,tsx,js,jsx}"
       
       - uses: stefanzweifel/git-auto-commit-action@v3.0.0
         with:
