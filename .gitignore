@@ -4,9 +4,9 @@ node_modules/
 coverage/
 .idea/
 
-dist/*.js
-dist/*.map
-dist/*.mjs
+# dist/*.js
+# dist/*.map
+# dist/*.mjs
 
 .cache/
 
