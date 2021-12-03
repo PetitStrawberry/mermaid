@@ -32,10 +32,13 @@ jobs:
       - name: Run node build
         run: npm run build
 
-      - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v2.2.4
-        with:
-          # Artifact name
-          name: dist
-          # A file, directory or wildcard pattern that describes what to upload
-          path: dist
+      - name: Push
+        run: |
+          git remote set-url origin https://github-actions:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}
+          git config --global user.name "${GITHUB_ACTOR}"
+          git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          if (git diff --shortstat | grep '[0-9]'); then \
+            git add dist/*; \
+            git commit -m "Push product"; \
+            git push origin HEAD:${GITHUB_REF}; \
+          fi
