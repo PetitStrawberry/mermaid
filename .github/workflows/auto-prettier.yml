@@ -32,7 +32,7 @@ jobs:
         uses: creyD/prettier_action@v4.1
         with:
           # This part is also where you can pass other options, for example:
-          prettier_options: --write "src/.*\/*.{ts, js, jsx}"
+          prettier_options: --write "src/.*\/*.{ts,tsx,js,jsx}"
 
       - uses: stefanzweifel/git-auto-commit-action@v3.0.0
         with:
