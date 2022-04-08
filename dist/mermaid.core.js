@@ -8837,7 +8837,7 @@ var updateCurrentConfig = function updateCurrentConfig(siteCfg, _directives) {
  * **Notes:** Sets the siteConfig. The siteConfig is a protected configuration for repeat use. Calls
  * to reset() will reset the currentConfig to siteConfig. Calls to reset(configApi.defaultConfig)
  * will reset siteConfig and currentConfig to the defaultConfig Note: currentConfig is set in this
- * function *Default value: At default, will mirror Global Config**
+ * function _Default value: At default, will mirror Global Config_*
  *
  * @param conf - The base currentConfig to use as siteConfig
  * @returns {object} - The siteConfig
@@ -12341,7 +12341,7 @@ var config = {
   arrowMarkerAbsolute: false,
 
   /**
-   * This option controls which currentConfig keys are considered *secure* and can only be changed
+   * This option controls which currentConfig keys are considered _secure_ and can only be changed
    * via call to mermaidAPI.initialize. Calls to mermaidAPI.reinitialize cannot make changes to the
    * `secure` keys in the current currentConfig. This prevents malicious graph directives from
    * overriding a site's default security.
